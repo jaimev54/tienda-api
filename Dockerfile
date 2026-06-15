@@ -1,5 +1,6 @@
 # ---- Build stage ----
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Cambiado a la imagen oficial de Microsoft en Docker Hub
+FROM docker.io/microsoft/dotnet-sdk:8.0 AS build
 WORKDIR /src
 
 COPY *.csproj .
@@ -9,7 +10,8 @@ COPY . .
 RUN dotnet publish -c Release -o /app
 
 # ---- Runtime stage ----
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Cambiado a la imagen oficial de Microsoft en Docker Hub
+FROM docker.io/microsoft/dotnet-aspnet:8.0 AS runtime
 WORKDIR /app
 COPY --from=build /app .
 
