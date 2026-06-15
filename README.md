@@ -26,6 +26,7 @@
 ## Usuarios de prueba
 - Admin:   admin@tienda.com   / Admin123!
 - Cliente: cliente@tienda.com / Cliente123!
+- superbase : Cliente__123!
 
 ## Despliegue en Render
 1. Sube a GitHub
