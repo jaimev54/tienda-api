@@ -1,6 +1,6 @@
 # ---- Build stage ----
-# Usamos la imagen oficial de SDK de .NET 8 mantenida por Canonical/Ubuntu en Docker Hub
-FROM ubuntu.azurecr.io/dotnet/sdk:8.0 AS build
+# Imagen oficial del SDK de .NET 8 en Docker Hub (mantenida por Microsoft)
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY *.csproj .
@@ -10,8 +10,8 @@ COPY . .
 RUN dotnet publish -c Release -o /app
 
 # ---- Runtime stage ----
-# Usamos la versión de ejecución (runtime) de .NET 8 sobre Ubuntu
-FROM ubuntu.azurecr.io/dotnet/aspnet:8.0 AS runtime
+# Imagen oficial de tiempo de ejecución optimizada (Chiseled Ubuntu) en Docker Hub
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy-chiseled AS runtime
 WORKDIR /app
 COPY --from=build /app .
 
