@@ -11,6 +11,16 @@ public class User
     [Required] public string PasswordHash { get; set; } = string.Empty;
     [MaxLength(20)] public string Role { get; set; } = "customer";
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    // Datos de envio
+    [MaxLength(20)] public string? Phone { get; set; }
+    [MaxLength(200)] public string? Street { get; set; }
+    [MaxLength(100)] public string? Colony { get; set; }
+    [MaxLength(100)] public string? City { get; set; }
+    [MaxLength(100)] public string? State { get; set; }
+    [MaxLength(10)] public string? ZipCode { get; set; }
+    [MaxLength(50)] public string? Country { get; set; } = "Mexico";
+
     public ICollection<Order> Orders { get; set; } = new List<Order>();
     public Cart? Cart { get; set; }
 }

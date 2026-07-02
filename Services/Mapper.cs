@@ -5,7 +5,11 @@ namespace TiendaApi.Services;
 
 public static class Mapper
 {
-    public static UserDto ToDto(User u) => new(u.Id, u.Name, u.Email, u.Role, u.CreatedAt);
+    public static UserDto ToDto(User u) => new(
+    u.Id, u.Name, u.Email, u.Role, u.CreatedAt,
+    u.Phone, u.Street, u.Colony,
+    u.City, u.State, u.ZipCode, u.Country
+    );
     public static CategoryDto ToDto(Category c) => new(c.Id, c.Name, c.Description);
     public static ProductDto ToDto(Product p) => new(p.Id, p.Name, p.Description, p.Price, p.Stock, p.ImageUrl, p.CategoryId, p.Category != null ? ToDto(p.Category) : null, p.CreatedAt);
     public static CartItemDto ToDto(CartItem ci) => new(ci.Id, ci.ProductId, ToDto(ci.Product!), ci.Quantity);

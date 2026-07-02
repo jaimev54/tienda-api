@@ -5,7 +5,22 @@ namespace TiendaApi.DTOs;
 public record LoginRequest([Required, EmailAddress] string Email, [Required] string Password);
 public record RegisterRequest([Required, MaxLength(100)] string Name, [Required, EmailAddress] string Email, [Required, MinLength(6)] string Password);
 public record AuthResponse(string Token, UserDto User);
-public record UserDto(int Id, string Name, string Email, string Role, DateTime CreatedAt);
+public record UserDto(
+    int Id, string Name, string Email, string Role, DateTime CreatedAt,
+    string? Phone, string? Street, string? Colony,
+    string? City, string? State, string? ZipCode, string? Country
+);
+
+public record UpdateProfileRequest(
+    [MaxLength(100)] string? Name,
+    [MaxLength(20)] string? Phone,
+    [MaxLength(200)] string? Street,
+    [MaxLength(100)] string? Colony,
+    [MaxLength(100)] string? City,
+    [MaxLength(100)] string? State,
+    [MaxLength(10)] string? ZipCode,
+    [MaxLength(50)] string? Country
+);
 public record CategoryDto(int Id, string Name, string? Description);
 public record ProductDto(int Id, string Name, string Description, decimal Price, int Stock, string? ImageUrl, int CategoryId, CategoryDto? Category, DateTime CreatedAt);
 public record CreateProductRequest([Required, MaxLength(150)] string Name, [Required] string Description, [Range(0, double.MaxValue)] decimal Price, [Range(0, int.MaxValue)] int Stock, string? ImageUrl, [Required] int CategoryId);
